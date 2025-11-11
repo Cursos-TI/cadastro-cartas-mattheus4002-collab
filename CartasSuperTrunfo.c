@@ -36,7 +36,7 @@ void lerCarta(Carta *carta) {
 
     printf("Número de Pontos Turísticos: ");
     scanf("%d", &carta->pontosTuristicos);
-}
+    
 
 void imprimirCarta(Carta carta, int numeroCarta) {
     printf("Carta %d:\n", numeroCarta);
@@ -47,7 +47,6 @@ void imprimirCarta(Carta carta, int numeroCarta) {
     printf("Área: %.2f km²\n", carta.area);
     printf("PIB: %.2f bilhões de reais\n", carta.pib);
     printf("Número de Pontos Turísticos: %d\n\n", carta.pontosTuristicos);
-}
 
 int main() {
     Carta carta1, carta2;
@@ -62,6 +61,79 @@ int main() {
     imprimirCarta(carta1, 1);
     imprimirCarta(carta2, 2);
 
+    #include <stdio.h>
+
+#define MAX_NOME 50
+
+typedef struct {
+    char estado;
+    char codigo[4];
+    char nomeCidade[MAX_NOME];
+    int populacao;
+    float area;
+    float pib;
+    int pontosTuristicos;
+    float densidadePopulacional;
+    float pibPerCapita;
+} Carta;
+
+void lerCarta(Carta *carta) {
+    printf("Estado (A-H): ");
+    scanf(" %c", &carta->estado);
+
+    printf("Código da Carta (ex: A01): "Carta (ex: A01): ");
+    scanf("%s", carta->codigo);
+
+    printf("Nome da Cidade: ");
+    scanf(" %[^\n]", carta->nomeCidade);
+
+    printf("População: ");
+    scanf("%d", &carta->populacao);
+
+    printf("Área (km²): ");
+    scanf("%f", &carta->area);
+
+    printf("PIB: ");
+    scanf("%f", &carta->pib);
+
+    printf("Número de Pontos Turísticos: ");
+    scanf("%d", &carta->pontosTuristicos);
+}
+
+void calcularIndicadores(Carta *carta) {
+    carta->densidadePopulacional = (float)carta->populacao / carta->area;
+    carta->pibPerCapita = carta->pib / carta->populacao;
+}
+
+void imprimirCarta(Carta carta, int numeroCarta) {
+    printf("Carta %d:\n", numeroCarta);
+    printf("Estado: %c\n", carta.estado);
+    printf("Código: %s\n", carta.codigo);
+    printf("Nome da Cidade: %s\n", carta.nomeCidade);
+    printf("População: %d\n", carta.populacao);
+    printf("Área: %.2f km²\n", carta.area);
+    printf("PIB: %.2f bilhões de reais\n", carta.pib);
+    printf("Número de Pontos Turísticos: %d\n", carta.pontosTuristicos);
+    printf("Densidade Populacional: %.2f hab/km²\n", carta.densidadePopulacional);
+    printf("PIB per Capita: %.2f reais\n\n", carta.pibPerCapita);
+}
+
+int main() {
+    Carta carta1, carta2;
+
+    printf("Insira os dados da Carta 1:\n");
+    lerCarta(&carta1);
+    calcularIndicadores(&carta1);
+
+    printf("\nInsira os dados da Carta 2:\n");
+    lerCarta(&carta2);
+    calcularIndicadores(&carta2);
+
+    printf("\nDados das Cartas:\n");
+    imprimirCarta(carta1, 1);
+    imprimirCarta(carta2, 2);
+
     return 0;
+    
 }
 
