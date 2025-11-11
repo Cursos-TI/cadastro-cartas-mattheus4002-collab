@@ -2,7 +2,9 @@
 
 int main(){
 
-  printf ("Desafio cadastro de cartas!\n")
+  printf ("Desafio cadastro de cartas!\n");
+  printf ("Novo comit\n");
+  
   
 
 
